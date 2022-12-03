@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { MovieName } from './types';
 import NumberMovies from './components/Movies/NumberMovies';
+import Jokes from './components/Jokes/Jokes';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
       <input onChange={e => name(e)} style={{margin:'10px'}} type="text"/>
       <button onClick={newMovie}>Add</button>
       <NumberMovies nameMovie={nameMovie} removeMove={removeMove} Movies={Movies}/>
+      <Jokes/>
     </div>
   );
 }
