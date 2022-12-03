@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component, MouseEventHandler } from 'react'
+import { MovieName } from '../../types';
+
 interface Props {
-    nameMovie: string;
+  id: string;
+  nameMovie: string
+  remove: React.MouseEventHandler
+  name: React.ChangeEventHandler<HTMLInputElement>
+  Movies: MovieName[]
 }
 
-interface State {
-    nameMovie: string;
-}
+class MovieChoise extends Component<Props> {
 
-class MovieChoise extends Component<Props , State> {
-
-    state: State = {
-        nameMovie: this.state.nameMovie
-      };
-      
-      refactorMovie = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState(prev => ({
-            ...prev,
-            nameMovie: event.target.value
-          }))
-      }
-
+  shouldComponentUpdate(nextProps: Readonly<Props>, ): boolean {
+    if(this.props.name === nextProps.name && this.props.Movies === nextProps.Movies){
+      return false
+    }
+    return true
+  }
   render() {
-
     return (
       <div style={{marginTop:'10px'}}>
-        <input onChange={(e) =>  this.refactorMovie(e)}  value={this.state.nameMovie} type="text"/>
-        <button>X</button>
+        <input onChange={this.props.name}  value={this.props.nameMovie} type="text"/>
+        <button onClick={this.props.remove}>X</button>
       </div>
     )
   }
